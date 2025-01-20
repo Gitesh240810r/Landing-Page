@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+    <style>
+        body.dark{
+            background-color: #121212;
+            color: white;
+        }
+    </style>
+
+    <script>
+        // Configure Tailwind for dark mode
+        tailwind.config = {
+            darkMode: 'class' // This enables class-based dark mode
+        }
+    </script>
+
+</head>
+<body class="bg-gray-200" style="font-family: 'Ubuntu';">
+    
+    <header>
+        <nav class="flex bg-gray-600 px-6 py-4 items-center justify-between w-full fixed z-50 shadow-lg">
+            <h3 class="text-2xl font-bold text-white">Logo</h3>
+            <ul class="flex space-x-6 items-center text-white">
+                <li class="hover:text-blue-300 transition duration-300"><a href="#hero">Home</a></li>
+                <li class="hover:text-blue-300 transition duration-300"><a href="#About">About</a></li>
+                <li class="hover:text-blue-300 transition duration-300"><a href="#product">Product</a></li>
+                <li class="hover:text-blue-300 transition duration-300"><a href="#testimony">Contact Us</a></li>
+                <li class="hover:text-blue-300 transition duration-300"><a href=""><button class="border border-blue-600 text-blue-600 px-4 py-2 bg-white hover:bg-blue-600 hover:text-white rounded-md transition duration-300">App</button></a></li>
+                <li class="hover:text-blue-300 transition duration-300"><a href=""><button id="modeBtn" class="border-2 border-white p-2 w-[50px] h-[50px] rounded-full text-center bg-gray-800 "><i class="fas fa-moon"></i></button></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="flex min-h-screen bg-gray-200 items-center p-5 relative" style="background-image: url(/Assets/pexels-willpicturethis-1954524\(2\).jpg); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="relative z-10 container mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="w-1/2 flex justify-center items-center">
+                <div class="text-white max-w-lg">
+                    <h1 class="text-5xl font-extrabold mb-6 leading-tight">Transform Your Health with AI</h1>
+                    <p class="text-lg mb-6 leading-relaxed">Personalized fitness, nutrition, and mental well-being plans—all powered by AI to fit your unique needs. Take the first step toward a healthier, happier you.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300">Get Started Now</button>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center items-center">
+                <div class="bg-gray-500 p-3 rounded-lg shadow-2xl relative max-w-lg">
+                    <img class="rounded-lg object-cover" src="https://img.freepik.com/free-vector/hand-drawn-ai-healthcare-illustration_23-2151106570.jpg" alt="AI Healthcare Illustration">
+                    <div class="absolute top-5 right-5 bg-blue-600 text-white font-bold text-sm py-2 px-4 rounded-full shadow-md">Powered by AI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="Benefits" class="p-8 dark:bg-[#22272B] ">
+        <h1 class="text-3xl text-center font-bold mb-3 dark:text-white">Why Choose "App"</h1>
+        <div id="benefits-container" class="flex p-5 justify-between space-x-5" style="overflow-y: auto;">
+            <!--Dynamically Added-->
+        </div>
+    </section>
+
+    <section id="product" class="py-10">
+        <div class="bg-white dark:bg-[#22272B]  p-10 rounded-sm container mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="w-full md:w-1/2 shadow-lg">
+                <img class="w-full rounded-lg shadow-lg object-cover" src="https://img.freepik.com/free-vector/hand-drawn-ai-healthcare-illustration_52683-155547.jpg" alt="Product Image">
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h2 class="text-4xl font-bold dark:text-white mb-4 text-gray-800">Discover Our Revolutionary Product</h2>
+                <p class="text-lg mb-6 text-gray-600 dark:text-gray-200">
+                    Life is full of challenges—managing time, staying productive, and maintaining well-being can be overwhelming. Many solutions are complicated and hard to adopt. 
+                </p>
+                <p class="text-lg mb-6 text-gray-600 dark:text-gray-200">
+                    Our product changes that. With intuitive AI-powered features, it seamlessly fits into your daily routine, simplifying tasks, boosting productivity, and promoting better health. 
+                </p>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition duration-300">
+                    Learn More
+                </button>
+            </div>            
+        </div>
+    </section>
+    
+    <section id="contributions" class="p-5">
+        <h1 class="text-3xl font-bold text-center mb-4">Our Impact So Far</h1>
+        <div class="chartcontainer">
+            <canvas id="PieChart" class="w-[500px] h-[500px]"></canvas>
+        </div>
+    </section>
+
+    <section id="testimony" class="p-8 bg-gray-800 mt-5">
+        <h1 class="text-3xl text-center text-white font-bold mb-4">Don't Just Hear It from Us!</h1>
+        <div id="tcontainer" class="flex flex-wrap gap-5 justify-between" style="overflow-y: auto;">
+            <!--Dynamically Filled-->
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8 ">
+        <div class="container mx-auto text-center">
+            <div class="mb-4">
+                <h4 class="text-xl font-bold">Stay Connected</h4>
+                <p class="text-lg">Follow us on our social media channels for the latest updates.</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="text-white hover:text-blue-300 transition duration-300"><i class="fab fa-facebook-square text-2xl"></i></a>
+                <a href="#" class="text-white hover:text-blue-300 transition duration-300"><i class="fab fa-twitter text-2xl"></i></a>
+                <a href="#" class="text-white hover:text-blue-300 transition duration-300"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="#" class="text-white hover:text-blue-300 transition duration-300"><i class="fab fa-linkedin text-2xl"></i></a>
+            </div>
+            <div class="text-sm">
+                <p>&copy; 2025 [Your App Name]. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const benefitsdb = [
+            { icon: "fas fa-user-md", title: "Personalized Insights", description: "Get tailored health and wellness plans designed specifically for your needs using AI technology." },
+            { icon: "fas fa-dumbbell", title: "Fitness Guidance", description: "Receive expert-level exercise routines and tips to stay fit and active, no matter your fitness level." },
+            { icon: "fas fa-apple-alt", title: "Nutrition Tracking", description: "Track your meals and calorie intake effortlessly with AI-powered suggestions and meal plans." },
+            { icon: "fas fa-smile", title: "Mental Wellness Support", description: "Access guided meditations, mood tracking, and stress management tools for a balanced mind." },
+            { icon: "fas fa-chart-line", title: "Health Analytics", description: "Monitor your progress with real-time analytics, charts, and actionable insights." },
+            { icon: "fas fa-clock", title: "24/7 Assistance", description: "Your virtual AI coach is always available to guide you and answer your health-related questions." },
+        ];
+
+        function generatebenefits(){
+            benefitsdb.forEach(benefit =>{
+                const container = document.getElementById("benefits-container");
+                const card = document.createElement("div");
+                card.classList.add("w-[100px]","text-center");
+                card.innerHTML =`
+                <div class="p-5 flex text-5xl items-center text-center justify-center text-green-700 h-[100px] w-[100px] transition duration-300"><i class="${benefit.icon}"></i></div>
+                <h1 class="text-center mt-2 text-gray-800 font-semibold dark:text-white">${benefit.title}</h1>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        generatebenefits();
+
+        const testimonydb = [
+            {
+                image: "https://via.placeholder.com/150",  // Example image URL
+                comment: "This product has completely transformed the way I manage my health and productivity. The AI features are incredibly intuitive and make everything so much easier!",
+                name: "John Doe",
+            },
+            {
+                image: "https://via.placeholder.com/150",  // Example image URL
+                comment: "I’ve been using this for a month now, and I’ve noticed a significant improvement in my daily routine. It helps me stay on track and motivated every day!",
+                name: "Sarah Lee",
+            },
+            {
+                image: "https://via.placeholder.com/150",  // Example image URL
+                comment: "A game-changer! The personalized recommendations have made a huge difference in my fitness and mental wellness. I recommend it to everyone I know.",
+                name: "Mike Johnson",
+            },
+            {
+                image: "https://via.placeholder.com/150",  // Example image URL
+                comment: "The best decision I made! I’ve never felt more energized and focused. The AI really understands my needs and adapts perfectly.",
+                name: "Emily Parker",
+            }
+        ];
+
+        function generatetestimony() {
+            const t_container = document.getElementById("tcontainer");
+            
+            testimonydb.forEach(testimony => {
+                const t_card = document.createElement("div");
+                t_card.classList.add("w-[300px]", "p-5", "bg-gray-100", "rounded-lg", "shadow-lg",);
+                
+                t_card.innerHTML = `
+                    <div class="flex justify-center items-center mb-4">
+                        <img class="rounded-full h-[50px] w-[50px]" src="${testimony.image}" alt="${testimony.name}">
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800">${testimony.name}</p>
+                    <p class="text-gray-600">${testimony.comment}</p>
+                `;
+                
+                t_container.appendChild(t_card);
+            });
+        }
+
+        generatetestimony();
+
+        
+
+        function createPieChart(){
+
+            const ctx = document.getElementById("PieChart").getContext("2d");
+
+            new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: [
+                        "Improve Sleep Quality", 
+                        "Reduce Heart Risk", 
+                        "Improve Stress Management"
+                    ],
+                    datasets: [{
+                        label: "Healthcare Statistics",
+                        data: [ 30,45,25], // Example percentages or values
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)', // Fitness - Pink
+                            'rgba(54, 162, 235, 0.8)', // Mental Health - Blue
+                            'rgba(255, 206, 86, 0.8)', // Nutrition - Yellow
+                            'rgba(75, 192, 192, 0.8)', // Sleep Quality - Green
+                            'rgba(153, 102, 255, 0.8)', // Heart Health - Purple
+                            'rgba(255, 159, 64, 0.8)'   // Stress Management - Orange
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top', // Controls the position of the legend
+                        },
+                        tooltip: {
+                            enabled: true, // Enable tooltips on hover
+                        }
+                    }
+                }
+            });
+
+
+
+        }
+
+        createPieChart();
+
+        const toggleBtn = document.getElementById("modeBtn");
+
+        toggleBtn.onclick = function(event) {
+    event.preventDefault();  // Prevent page reload or default action
+
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        toggleBtn.innerHTML = `<i class="fas fa-sun"></i>`;
+    } else {
+        toggleBtn.innerHTML = `<i class="fas fa-moon"></i>`;
+    }
+}
+
+
+    </script>
+
+</body>
+</html>
