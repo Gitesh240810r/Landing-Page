@@ -8,20 +8,65 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     
-    <!-
+    <!--Font-1-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+    <!--Font-2 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Varela+Round&display=swap" rel="stylesheet">
 
     <style>
         body{
             font-family: "Poppins", sans-serif;
         }
+
+        body p{
+            font-family: "Varela Round";
+        }
+
+        .bf-box{
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .bf-box:hover{
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2); /* hover:shadow-2xl */
+        }
+
+        .t-card{
+            transition: ease-in-out 0.2s;
+        }
+
+        .t-card:hover{
+            transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #ft-container{
+            scroll-behavior: smooth;
+            animation: scroll 35s linear infinite;
+            display: flex;
+            width: fit-content;
+        }
+
+        @keyframes scroll {
+            0%{
+                transform: translateX(0);
+            }
+
+            100%{
+                transform: translateX(calc(-250px * 9));
+            }
+        }
+
     </style>
 
 </head>
 <body>
-    
+
     <header>
         <nav class="bg-gray-700 flex justify-between p-4 items-center text-white w-full fixed">
           <h1 class="text-xl">Logo</h1>
@@ -63,34 +108,34 @@
         
     </section>
 
-    <section id="features" class="bg-gray-100 p-5">
-        <h1 class="text-center font-bold text-3xl mt-3">Features</h1>
+    <section id="Benefits" class="bg-gray-100 p-5">
+        <h1 class="text-center font-bold text-3xl mt-3">Benefits</h1>
       
         <div class="flex justify-center" >
-            <div class="flex w-[1000px] h-auto gap-4 p-4">
+            <div class="flex w-[1000px] h-auto gap-2 p-4">
                 <!-- Left Column -->
                 <div class="flex flex-[2] flex-col gap-2">
                   <!-- Feature 1 -->
-                  <div class="flex-1 border-2 border-black rounded-lg p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold  top-2 left-2">Feature One</h2>
-                    <p class="text-sm">Detailed description of Feature One. It explains how it helps the users and solves their problem.</p>
+                  <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
+                    <h2 class="text-lg font-bold  top-2 left-2">Benefit One</h2>
+                    <img src="" alt="">
                   </div>
                   <!-- Feature 2 -->
-                  <div class="flex-1 border-2 border-black rounded-lg p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold  top-2 left-2">Feature Two</h2>
-                    <p class="text-sm ">Detailed description of Feature Two, emphasizing unique benefits and use cases.</p>
+                  <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
+                    <h2 class="text-lg font-bold  top-2 left-2">Benefit Two</h2>
+                   
                   </div>
                   <!-- Combined Row (Feature 3 & 4) -->
                   <div class="flex flex-1 gap-2">
                     <!-- Feature 3 -->
-                    <div class="flex-1 border-2 border-black rounded-lg p-3 bg-gray-50 ">
-                      <h2 class="text-lg font-bold top-2 left-2">Feature Three</h2>
-                      <p class="text-sm ">Brief description of Feature Three.</p>
+                    <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
+                      <h2 class="text-lg font-bold top-2 left-2">Benefit Three</h2>
+                     
                     </div>
                     <!-- Feature 4 -->
-                    <div class="flex-1 border-2 border-black rounded-lg p-3 bg-gray-50 ">
-                      <h2 class="text-lg font-bold">Feature Four</h2>
-                      <p class="text-sm">Brief description of Feature Four.</p>
+                    <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
+                      <h2 class="text-lg font-bold">Benefit Four</h2>
+                      
                     </div>
                   </div>
                 </div>
@@ -98,14 +143,14 @@
                 <!-- Right Column -->
                 <div class="flex flex-col flex-[1] gap-2">
                   <!-- Feature 5 -->
-                  <div class="flex-1 border-2 border-black rounded-xl p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold">Feature Five</h2>
-                    <p class="text-sm ">Key points about Feature Five.</p>
+                  <div class="bf-box flex-1 shadow-lg rounded-xl p-3 bg-gray-50 ">
+                    <h2 class="text-lg font-bold">Benefit Five</h2>
+                    
                   </div>
                   <!-- Feature 6 -->
-                  <div class="flex-1 border-2 border-black rounded-xl p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold ">Feature Six</h2>
-                    <p class="text-sm ">Key points about Feature Six.</p>
+                  <div class="bf-box flex-1 shadow-lg rounded-xl p-3 bg-gray-50 ">
+                    <h2 class="text-lg font-bold ">Benefit Six</h2>
+                    
                   </div>
                 </div>
               </div>
@@ -114,9 +159,9 @@
       </section>
       
 
-    <section id="Benefits" class="p-5">
-        <h1 class="text-3xl text-center mb-3 font-bold mt-3">Benefits</h1>
-        <div class="p-5 flex gap-5 justify-between" style="overflow-y: auto;" id="bf-container">
+    <section id="Feature" class="p-5">
+        <h1 class="text-3xl text-center mb-3 font-bold mt-3">Features</h1>
+        <div class="p-5 flex gap-5 justify-between" style="overflow: hidden;" id="ft-container">
         </div>
     </section>
 
@@ -192,47 +237,66 @@
     <script>
         
 
-        function generateBenefits(){
+        function generateFeatures(){
 
-            const benefits = [
-                {
-                    title: "Achieve Better Health",
-                    icon: "fa fa-heartbeat",
-                    description: "Improve your overall health with personalized tips."
-                },
-                {
-                    title: "Smarter Nutrition Choices",
-                    icon: "fa fa-apple-alt",
-                    description: "Receive guidance to eat healthier and smarter."
-                },
-                {
-                    title: "Better Sleep & Less Stress",
-                    icon: "fa fa-bed",
-                    description: "Manage stress and improve sleep quality effortlessly."
-                },
-                {
-                    title: "24/7 Support Anytime",
-                    icon: "fa fa-headset",
-                    description: "Get help and guidance whenever you need it."
-                }
-            ];
+            const features = [
+            {
+                "title": "Personalized Health Dashboard",
+                "icon": "fas fa-heartbeat"
+            },
+            {
+                "title": "Nutrition Planner",
+                "icon": "fas fa-apple-alt"
+            },
+            {
+                "title": "Sleep and Stress Management Tools",
+                "icon": "fas fa-bed"
+            },
+            {
+                "title": "24/7 Health Support Chat",
+                "icon": "fas fa-headset"
+            },
+            {
+                "title": "Fitness Tracker and Exercise Plans",
+                "icon": "fas fa-dumbbell"
+            },
+            {
+                "title": "Wellness Challenges and Rewards",
+                "icon": "fas fa-trophy"
+            },
+            {
+                "title": "Health Insights and Reports",
+                "icon": "fas fa-chart-line"
+            }
+        ];
 
-            
-            const bf_container = document.getElementById("bf-container");
+            const ft_container = document.getElementById("ft-container");
 
-            benefits.forEach(benefit =>{
-                const bf_card = document.createElement("div");
-                bf_card.classList.add("p-8","flex","flex-col", "justify-center", "items-center")
-                bf_card.innerHTML =`
+            features.forEach(benefit =>{
+                const ft_card = document.createElement("div");
+                ft_card.classList.add("p-8","flex","flex-col", "justify-center", "items-center")
+                ft_card.innerHTML =`
                      <div class="text-3xl text-center text-gray-700 p-2 w-[50px] h-[50px] mb-3"><i class="${benefit.icon}"></i></div>
-                    <p class="text-lg text-center ">${benefit.title}</p>
+                     <p class="text-lg text-center ">${benefit.title}</p>
                 `;
 
-                bf_container.appendChild(bf_card);
+                ft_container.appendChild(ft_card);
             });  
+
+            features.forEach(benefit =>{
+                const ft_card = document.createElement("div");
+                ft_card.classList.add("p-8","flex","flex-col", "justify-center", "items-center")
+                ft_card.innerHTML =`
+                     <div class="text-3xl text-center text-gray-700 p-2 w-[50px] h-[50px] mb-3"><i class="${benefit.icon}"></i></div>
+                     <p class="text-lg text-center ">${benefit.title}</p>
+                `;
+
+                ft_container.appendChild(ft_card);
+            });  
+
         };
 
-        generateBenefits();
+        generateFeatures();
 
         function generateTestimonies() {
             const testimony = [
@@ -262,7 +326,7 @@
 
             testimony.forEach(testimonyData => {
                 const testimonyCard = document.createElement("div");
-                testimonyCard.classList.add("w-[200px]", "bg-gray-100","shadow-lg","p-5","flex","flex-col", "flex-wrap");  
+                testimonyCard.classList.add("w-[200px]","t-card", "bg-gray-100","shadow-lg","p-5","flex","flex-col", "flex-wrap");  
                 
                 testimonyCard.innerHTML = `
                     <div class="img-container">
@@ -324,7 +388,7 @@
                         <p class="font-bold">${process.icon}</p>
                     </div>
                     <h3 class="text-xl font-bold mb-3">${process.title}</h3>
-                    <p class="text-sm text-gray-700">${process.description}</p>
+                    <p class="text-md text-gray-700">${process.description}</p>
                 `;
 
                 processContainer.appendChild(processCard);
