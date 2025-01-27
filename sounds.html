@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head section remains the same -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relaxing Sounds</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=cal-sans@400,500,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://kit.fontawesome.com/27dfd8c49e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+
+    <style>
+        body{
+            background-color: var(--background);
+        }
+
+        .sound {
+            background-color: var(--card);
+            min-width: 180px;
+            transition: all 0.3s ease;
+        }
+        .sound:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app" id="app">
+        <!-- Sidebar remains the same -->
+        <aside class="sidebar" hidden>
+            <!-- ... sidebar content ... -->
+        </aside>
+
+        <main class="main-content">
+            <header class="py-8 px-6">
+                <div class="header-content max-w-4xl mx-auto">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fa-solid fa-music text-2xl text-emerald-600"></i>
+                        <h1 class="text-3xl font-bold text-gray-900">Relaxing Sounds</h1>
+                    </div>
+                    <p class="text-lg text-gray-600">Listen to sounds that help you relax and focus.</p>
+                </div>
+            </header>
+            
+            <section class="p-6 max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="sound rounded-xl shadow-md overflow-hidden bg-white">
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <h1 class="text-xl font-bold text-gray-900">Forest Sounds</h1>
+                                <i class="fa-solid fa-tree text-2xl text-emerald-600"></i>
+                            </div>
+                            <div id="waveform1" class="bg-gray-50 rounded-lg p-4"></div>
+                            <button id="musicplay1" class="w-full mt-4 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                                <i class="fa-solid fa-play mr-2"></i><span>Play</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="sound rounded-xl shadow-md overflow-hidden bg-white">
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <h1 class="text-xl font-bold text-gray-900">Ocean Waves</h1>
+                                <i class="fa-solid fa-water text-2xl text-blue-600"></i>
+                            </div>
+                            <div id="waveform2" class="bg-gray-50 rounded-lg p-4"></div>
+                            <button id="musicplay2" class="w-full mt-4 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                                <i class="fa-solid fa-play mr-2"></i><span>Play</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="sound rounded-xl shadow-md overflow-hidden bg-white">
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <h1 class="text-xl font-bold text-gray-900">Rainfall</h1>
+                                <i class="fa-solid fa-cloud-rain text-2xl text-gray-600"></i>
+                            </div>
+                            <div id="waveform3" class="bg-gray-50 rounded-lg p-4"></div>
+                            <button id="musicplay3" class="w-full mt-4 px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                                <i class="fa-solid fa-play mr-2"></i><span>Play</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Create WaveSurfer instances for each card
+        const wavesurfers = [
+            {
+                container: '#waveform1',
+                buttonId: 'musicplay1',
+                url: 'media/birds39-forest-20772.mp3',
+            },
+            {
+                container: '#waveform2',
+                buttonId: 'musicplay2',
+                url: 'media/ocean-waves-250310.mp3',
+            },
+            {
+                container: '#waveform3',
+                buttonId: 'musicplay3',
+                url: 'media/rain-sound-272604.mp3',
+            },
+        ];
+
+        wavesurfers.forEach((item) => {
+            const wavesurfer = WaveSurfer.create({
+                container: item.container,
+                waveColor: '#5DB996',
+                progressColor: '#118B50',
+                barWidth: 4,
+                barRadius: 4,
+                url: item.url,
+            });
+
+            const playButton = document.getElementById(item.buttonId);
+            const buttonIcon = playButton.querySelector('i');
+            const buttonText = playButton.querySelector('span');
+
+            // Update button state based on player state
+            const updatePlayButton = (isPlaying) => {
+                if (isPlaying) {
+                    buttonIcon.classList.remove('fa-play');
+                    buttonIcon.classList.add('fa-pause');
+                    buttonText.textContent = 'Pause';
+                } else {
+                    buttonIcon.classList.remove('fa-pause');
+                    buttonIcon.classList.add('fa-play');
+                    buttonText.textContent = 'Play';
+                }
+            };
+
+            // Handle play/pause click
+            playButton.onclick = function () {
+                wavesurfer.playPause();
+            };
+
+            // Listen for play and pause events
+            wavesurfer.on('play', ()=> updatePlayButton(true));
+            wavesurfer.on('pause', () => updatePlayButton(false));
+        });
+    </script>
+</body>
+</html>
