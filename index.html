@@ -1,459 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    
-    <!--Font-1-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=cal-sans@400,500,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-    <!--Font-2 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Varela+Round&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/27dfd8c49e.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        body{
-            font-family: "Poppins", sans-serif;
+        .card {
+            padding: 10px;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            min-width: 150px;
+            border-radius: 5px;
+            background-color: var(--card);
         }
 
-        body p{
-            font-family: "Varela Round";
+        i {
+            background-color: var(--primary-light);
+            padding: 15px;
+            height: 50px;
+            width: 50px;
+            border-radius: 100%;
+            text-align: center;
         }
 
-        .bf-box{
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        .normal-icon {
+            background: none;
+            width: initial;
+            height: initial;
+            color: white;
+            padding: 0px;
         }
+       
+.container{
+    position: absolute;
+    width: 700px;
+    height: 600px;
+    background: #f5f5f5;
+    box-shadow: 0 30px 50px #dbdbdb;
+}
 
-        .bf-box:hover{
-            transform: scale(1.02);
-            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.2); /* hover:shadow-2xl */
-        }
+.container .slide .item{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow: 0 30px 50px #505050;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+}
 
-        .t-card{
-            transition: ease-in-out 0.2s;
-        }
+.slide .item:nth-child(1),
+.slide .item:nth-child(2){
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+}
 
-        .t-card:hover{
-            transform: translateY(-10px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
 
-        #ft-container{
-            scroll-behavior: smooth;
-            animation: scroll 35s linear infinite;
-            display: flex;
-            width: fit-content;
-        }
+.slide .item:nth-child(3){
+    left: 50%;
+}
+.slide .item:nth-child(4){
+    left: calc(50% + 220px);
+}
+.slide .item:nth-child(5){
+    left: calc(50% + 440px);
+}
 
-        @keyframes scroll {
-            0%{
-                transform: translateX(0);
-            }
+/* here n = 0, 1, 2, 3,... */
+.slide .item:nth-child(n + 6){
+    left: calc(50% + 660px);
+    opacity: 0;
+}
 
-            100%{
-                transform: translateX(calc(-250px * 9));
-            }
-        }
+
+
+.item .content{
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    color: #eee;
+    transform: translate(0, -50%);
+    font-family: system-ui;
+    display: none;
+}
+
+
+.slide .item:nth-child(2) .content{
+    display: block;
+}
+
+
+.content .name{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    animation: animate 1s ease-in-out 1 forwards;
+}
+
+.content .des{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content button{
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+}
+
+
+@keyframes animate {
+    from{
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+
+
+.button{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+.button button{
+    width: 40px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    border: 1px solid #000;
+    transition: 0.3s;
+}
+
+.button button:hover{
+    background: #ababab;
+    color: #fff;
+}
 
     </style>
 
 </head>
+
 <body>
 
-    <header>
-        <nav class="bg-gray-700 flex justify-between p-4 items-center text-white w-full fixed">
-          <h1 class="text-xl">Logo</h1>
-          <ul class="flex gap-5 items-center cursor-pointer">
-            <li class="relative group">
-              <span>Home</span>
-              <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-            </li>
-            <li class="relative group">
-              <span>Contact Us</span>
-              <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-            </li>
-            <li class="relative group">
-              <span>Features</span>
-              <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-            </li>
-            <li class="relative group">
-              <span>How it Works</span>
-              <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-            </li>
-            <li class="relative group">
-              <span>Testimonials</span>
-              <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"></span>
-            </li>
-            <li>
-              <button class="bg-gray-200 px-2 py-1 rounded-sm text-black hover:scale-[1.1] ease-in-out duration-[0.3s] hover:bg-gray-800 hover:text-white">App</button>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      
+    <div id="app" class="app">
 
-    <section id="hero" class="min-h-screen flex justify-center items-center" style="background-image: url();">
-        <div class="content text-center p-5">
-            <h1 class="text-4xl mb-5 font-bold" >YOUR HEALTH, SMARTER WITH AI</h1>
-            <p class="text-lg max-w-[750px]">Revolutionize your well-being with cutting-edge AI tools designed to personalize, predict, and optimize your health journey. Discover insights tailored just for you and take control like never before.</p>
-            <button class="bg-gray-300 px-4 py-2 rounded-full shadow-lg  mt-5 hover:scale-[1.1] ease-in-out duration-[0.3s] hover:bg-gray-800 hover:text-white">Get Started</button>
-        </div>
-        
-    </section>
-
-    <section id="Benefits" class="bg-gray-100 p-5">
-        <h1 class="text-center font-bold text-3xl mt-3">Benefits</h1>
-      
-        <div class="flex justify-center" >
-            <div class="flex w-[1000px] h-auto gap-2 p-4">
-                <!-- Left Column -->
-                <div class="flex flex-[2] flex-col gap-2">
-                  <!-- Feature 1 -->
-                  <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold  top-2 left-2">Benefit One</h2>
-                    <img src="" alt="">
-                  </div>
-                  <!-- Feature 2 -->
-                  <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold  top-2 left-2">Benefit Two</h2>
-                   
-                  </div>
-                  <!-- Combined Row (Feature 3 & 4) -->
-                  <div class="flex flex-1 gap-2">
-                    <!-- Feature 3 -->
-                    <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
-                      <h2 class="text-lg font-bold top-2 left-2">Benefit Three</h2>
-                     
-                    </div>
-                    <!-- Feature 4 -->
-                    <div class="bf-box flex-1 shadow-lg rounded-lg p-3 bg-gray-50 ">
-                      <h2 class="text-lg font-bold">Benefit Four</h2>
-                      
-                    </div>
-                  </div>
+        <!-- Sidebar -->
+        <aside class="sidebar" hidden>
+            <div class="sidebar-content">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                    <span class="logo-text">CoreAI</span>
                 </div>
-            
-                <!-- Right Column -->
-                <div class="flex flex-col flex-[1] gap-2">
-                  <!-- Feature 5 -->
-                  <div class="bf-box flex-1 shadow-lg rounded-xl p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold">Benefit Five</h2>
-                    
-                  </div>
-                  <!-- Feature 6 -->
-                  <div class="bf-box flex-1 shadow-lg rounded-xl p-3 bg-gray-50 ">
-                    <h2 class="text-lg font-bold ">Benefit Six</h2>
-                    
-                  </div>
-                </div>
-              </div>
-        </div>
-        
-      </section>
-      
 
-    <section id="Feature" class="p-5">
-        <h1 class="text-3xl text-center mb-3 font-bold mt-3">Features</h1>
-        <div class="p-5 flex gap-5 justify-between" style="overflow: hidden;" id="ft-container">
-        </div>
-    </section>
-
-    <section id="How" class="p-5 bg-gray-200">
-        <h1 class="text-center mt-3 text-3xl font-bold">Our Approach</h1>
-        <div id="H-container" class="flex flex-wrap justify-center gap-6 p-5"></div>
-    </section>
-
-    <section id="Testimony" class="p-2">
-        <h1 class="font-bold text-3xl text-center mt-3">Testimony</h1>
-        <div id="Tt-container" class="flex gap-5 flex-wrap text-center items-center justify-center p-5"></div>
-    </section>
-
-    <section>
-        <div class="p-5">
-            <h1 class="text-3xl font-bold text-center ">FAQ's</h1>
-            <div id="f-container" class="container mx-auto px-4 py-8"></div>
-                <!--Dynamically Added-->
+                <nav class="nav-links">
+                    <a href="../index.html" class="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="7" height="9" x="3" y="3" rx="1" />
+                            <rect width="7" height="5" x="14" y="3" rx="1" />
+                            <rect width="7" height="9" x="14" y="12" rx="1" />
+                            <rect width="7" height="5" x="3" y="16" rx="1" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-link active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg>
+                        <span>Workouts</span>
+                        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </a>
+                    <a href="#" class="nav-link active">
+                        <svg width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M128 352.576V352a288 288 0 0 1 491.072-204.224 192 192 0 0 1 274.24 204.48 64 64 0 0 1 57.216 74.24C921.6 600.512 850.048 710.656 736 756.992V800a96 96 0 0 1-96 96H384a96 96 0 0 1-96-96v-43.008c-114.048-46.336-185.6-156.48-214.528-330.496A64 64 0 0 1 128 352.64zm64-.576h64a160 160 0 0 1 320 0h64a224 224 0 0 0-448 0zm128 0h192a96 96 0 0 0-192 0zm439.424 0h68.544A128.256 128.256 0 0 0 704 192c-15.36 0-29.952 2.688-43.52 7.616 11.328 18.176 20.672 37.76 27.84 58.304A64.128 64.128 0 0 1 759.424 352zM672 768H352v32a32 32 0 0 0 32 32h256a32 32 0 0 0 32-32v-32zm-342.528-64h365.056c101.504-32.64 165.76-124.928 192.896-288H136.576c27.136 163.072 91.392 255.36 192.896 288z" />
+                        </svg>
+                        <span>Diets</span>
+                        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </a>
+                    <!-- Other nav links remain the same as in index.html -->
+                </nav>
             </div>
-        </div>
-    </section>
 
-    <section class="bg-[#18181b] text-white text-center p-10">
-        <h1 class="text-3xl font-bold mb-4">Ready To Transform your Health?</h1>
-        <p class="text-lg mb-3 ">Start Using CoreAI and watch your Health Improve</p>
-        <button class="bg-gray-300 px-4 py-2 rounded-full text-black hover:scale-[1.1] ease-in-out duration-[0.3s] hover:bg-gray-800 hover:text-white ">Button</button>
-    </section>
+            <button class="logout-button nav-link" id="logoutButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" x2="9" y1="12" y2="12" />
+                </svg>
+                <span>Logout</span>
+            </button>
+        </aside>
 
-    <footer class="bg-gray-100 py-8">
-        
-        <div class="flex justify-center">
-            <div class=" mx-auto flex gap-8 p-8 "  >
-      
-                <!-- Quick Links Section -->
-                <div class="flex-col">
-                  <h3 class="text-lg font-bold mb-2">Quick Links</h3>
-                  <ul>
-                    <li><a href="#" class="text-gray-600 hover:text-black">Features</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-black">How It Works</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-black">Testimonials Key Features</a></li>
-                  </ul>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-content">
+                    <h1>Health</h1>
+                    <p>Enhance your well-being with personalized insights and tools.</p>
                 </div>
-            
-                <!-- Legal Section -->
-                <div class="flex-col">
-                  <h3 class="text-lg font-bold mb-2">Legal</h3>
-                  <ul>
-                    <li><a href="#" class="text-gray-600 hover:text-black">Terms of Service</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-black">Privacy Policy</a></li>
-                  </ul>
-                </div>
-            
-                <!-- Connect Section -->
-                <div class="flex-col">
-                  <h3 class="text-lg font-bold mb-2">Connect</h3>
-                  <ul>
-                    <li><a href="#" class="text-gray-600 hover:text-black">Twitter</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-black">LinkedIn</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-black">Instagram</a></li>
-                  </ul>
-                </div>
-              </div>
-      
+            </header>
+
+            <section id="Relaxation">
+                <h1 class="text-2xl font-semibold">Mindfulness and Relaxation</h1>
+
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-5">
+
+                  <!-- Relaxing Activities Card -->
+                  <div class="card flex-1">
+                      <div class="flex items-center gap-3 mb-5">
+                          <i class="fas fa-couch"></i>
+                          <h1 class="text-xl font-semibold mb-2">Relaxing Activities</h1>
+                      </div>
+                      <p>Engage in soothing activities to unwind and recharge.</p>
+                       <button class="button-primary mt-2" id="r-btn">Learn More</button>
+                  </div>
               
-        </div>
+                  <!-- Nature Sounds Card -->
+                  <div class="card flex-1">
+                      <div class="flex items-center gap-3 mb-5">
+                          <i class="fas fa-tree"></i>
+                          <h1 class="text-xl font-semibold mb-2">Nature Sounds</h1>
+                      </div>
+                      <p>Listen to soothing sounds of nature to enhance focus and calm.</p>
+                      <a href="sounds.html"><button class="button-primary mt-2" id="n-btn">Listen Now!</button></a>
+                  </div>
+              
+                  <!-- Guided Meditations Card -->
+                  <div class="card flex-1">
+                      <div class="flex items-center gap-3 mb-5">
+                          <i class="fas fa-head-side-virus"></i>
+                          <h1 class="text-xl font-semibold mb-2">Guided Meditations</h1>
+                      </div>
+                      <p>Try guided meditation to clear your mind and find inner peace.</p>
+                      <a href="meditation.html"><button class="button-primary mt-2" id="g-btn">Meditate Now</button></a>
+                  </div>
+              
+              </div>
+              
+              
 
-        <div class="border-t border-gray-300 mt-8 pt-4 flex-col">
-            <p class="text-center text-gray-600 text-sm">&copy; 2025 StudySpace. All rights reserved.</p>
-          </div>
+            </section>
 
-    </footer>
+            <section id="symptoms" class="mt-12">
 
-    <script>
-        
+              <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Symptom Checker Card -->
+                <div class="bg-white shadow-lg p-6 rounded-xl flex-1">
+                  <h2 class="text-2xl font-semibold text-gray-700 mb-4">Symptom Checker</h2>
+                  <textarea 
+                    name="symptoms" 
+                    id="symptoms" 
+                    placeholder="Type your symptoms here" 
+                    class="min-h-[200px] w-full border-2 border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  ></textarea>
+                  <button 
+                    class="bg-blue-500 text-white py-2 px-6 rounded-full mt-4 hover:bg-blue-600 transition">
+                    Submit
+                  </button>
+                </div>
+              
+                <!-- Tips and Evidence Card -->
+                <div class="bg-white shadow-lg p-6 rounded-xl flex-1 lg:flex-[2]" id="tips-card">
+                  <h2 class="text-xl font-semibold text-gray-800 mb-2" id="tip-title"></h2>
+                  <p class="text-gray-600 mb-4" id="tip-content"></p>
+                  <div class="bg-blue-100 p-4 rounded-lg" id="evidence-section" >
+                    <h3 class="text-lg font-medium text-blue-700 mb-2" id="evidence-title">Evidence:</h3>
+                    <ul class="list-disc list-inside text-gray-700" id="evidence-list"></ul>
+                  </div>
+                </div>              
 
-        function generateFeatures(){
+            </section>
 
-            const features = [
-            {
-                "title": "Personalized Health Dashboard",
-                "icon": "fas fa-heartbeat"
-            },
-            {
-                "title": "Nutrition Planner",
-                "icon": "fas fa-apple-alt"
-            },
-            {
-                "title": "Sleep and Stress Management Tools",
-                "icon": "fas fa-bed"
-            },
-            {
-                "title": "24/7 Health Support Chat",
-                "icon": "fas fa-headset"
-            },
-            {
-                "title": "Fitness Tracker and Exercise Plans",
-                "icon": "fas fa-dumbbell"
-            },
-            {
-                "title": "Wellness Challenges and Rewards",
-                "icon": "fas fa-trophy"
-            },
-            {
-                "title": "Health Insights and Reports",
-                "icon": "fas fa-chart-line"
-            }
-        ];
+            <section class="mt-12">
+            
+             
+     
+     <div class="container">
+ 
+         <div class="slide">
+ 
+             
+             <div class="item" style="background-image: url(https://i.ibb.co/qCkd9jS/img1.jpg);">
+                 <div class="content">
+                     <div class="name">Switzerland</div>
+                     <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                     <button>See More</button>
+                 </div>
+             </div>
+             <div class="item" style="background-image: url(https://i.ibb.co/jrRb11q/img2.jpg);">
+                 <div class="content">
+                     <div class="name">Finland</div>
+                     <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                     <button>See More</button>
+                 </div>
+             </div>
+             <div class="item" style="background-image: url(https://i.ibb.co/NSwVv8D/img3.jpg);">
+                 <div class="content">
+                     <div class="name">Iceland</div>
+                     <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                     <button>See More</button>
+                 </div>
+             </div>
+             <div class="item" style="background-image: url(https://i.ibb.co/Bq4Q0M8/img4.jpg);">
+                 <div class="content">
+                     <div class="name">Australia</div>
+                     <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                     <button>See More</button>
+                 </div>
+             </div>
+             <div class="item" style="background-image: url(https://i.ibb.co/jTQfmTq/img5.jpg);">
+                 <div class="content">
+                     <div class="name">Netherland</div>
+                     <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                     <button>See More</button>
+                 </div>
+             </div>
+             <div class="item" style="background-image: url(https://i.ibb.co/RNkk6L0/img6.jpg);">
+                 <div class="content">
+                     <div class="name">Ireland</div>
+                     <div class="des">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, eum!</div>
+                     <button>See More</button>
+                 </div>
+             </div>
+ 
+         </div>
+ 
+         <div class="button">
+             <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+             <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+         </div>
+ 
+     </div>
+              
+            </section>
 
-            const ft_container = document.getElementById("ft-container");
+        </main>
 
-            features.forEach(benefit =>{
-                const ft_card = document.createElement("div");
-                ft_card.classList.add("p-8","flex","flex-col", "justify-center", "items-center")
-                ft_card.innerHTML =`
-                     <div class="text-3xl text-center text-gray-700 p-2 w-[50px] h-[50px] mb-3"><i class="${benefit.icon}"></i></div>
-                     <p class="text-lg text-center ">${benefit.title}</p>
-                `;
+    </div>
 
-                ft_container.appendChild(ft_card);
-            });  
+<script>
 
-            features.forEach(benefit =>{
-                const ft_card = document.createElement("div");
-                ft_card.classList.add("p-8","flex","flex-col", "justify-center", "items-center")
-                ft_card.innerHTML =`
-                     <div class="text-3xl text-center text-gray-700 p-2 w-[50px] h-[50px] mb-3"><i class="${benefit.icon}"></i></div>
-                     <p class="text-lg text-center ">${benefit.title}</p>
-                `;
+function tips() {
+  const rawData = [
+    {
+      title: "Stay Hydrated",
+      content: "Drink plenty of water daily to stay energized.",
+      evidence: [
+        "Increases focus by 10%",
+        "Improves digestion and skin health",
+      ],
+    },
+  ];
 
-                ft_container.appendChild(ft_card);
-            });  
+  // Get the DOM elements to update
+  const tip_title = document.getElementById("tip-title");
+  const tip_content = document.getElementById("tip-content");
+  const ev_title = document.getElementById("evidence-title");
+  const ev_content = document.getElementById("evidence-list");
 
-        };
+  // Access the first (and only) tip from the rawData
+  const tip = rawData[0]; // Accessing the first object in the array
 
-        generateFeatures();
+  // Update the DOM with the parsed data
+  tip_title.textContent = tip.title;
+  tip_content.textContent = tip.content;
 
-        function generateTestimonies() {
-            const testimony = [
-                {
-                    name: "John Doe",
-                    image: "https://via.placeholder.com/150/FF5733/FFFFFF?text=John+Doe",
-                    text: "Improved my health with amazing insights!"
-                },
-                {
-                    name: "Jane Smith",
-                    image: "https://via.placeholder.com/150/33FF57/FFFFFF?text=Jane+Smith",
-                    text: "Tracks progress and feels like a health coach."
-                },
-                {
-                    name: "Alex Brown",
-                    image: "https://via.placeholder.com/150/FFCD33/FFFFFF?text=Alex+Brown",
-                    text: "24/7 support helps me stay in control daily."
-                },
-                {
-                    name: "Emily White",
-                    image: "https://via.placeholder.com/150/9C33FF/FFFFFF?text=Emily+White",
-                    text: "Stress-free and better sleep with tailored tips!"
-                }
-            ];
+  // Update the evidence section
+  ev_title.textContent = tip.evidence.length > 0 ? "Evidence:" : "No Evidence"; // Check if evidence exists
+  ev_content.innerHTML = ""; // Clear any previous evidence
 
-            const testimonyContainer = document.getElementById("Tt-container");
+  // Add new evidence items
+  tip.evidence.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    ev_content.appendChild(li);
+  });
+}
 
-            testimony.forEach(testimonyData => {
-                const testimonyCard = document.createElement("div");
-                testimonyCard.classList.add("w-[200px]","t-card", "bg-gray-100","shadow-lg","p-5","flex","flex-col", "flex-wrap");  
-                
-                testimonyCard.innerHTML = `
-                    <div class="img-container">
-                        <img src="${testimonyData.image}" alt="${testimonyData.name}">
-                    </div>
-                    <h3 class = "text-lg font-semibold">${testimonyData.name}</h3>
-                    <p>${testimonyData.text}</p>
-                `;
-                
-                testimonyContainer.appendChild(testimonyCard);  // Append each card inside the loop
-            });
-        };
+// Call the function
+tips();
 
-        generateTestimonies();
+let next = document.querySelector('.next')
+let prev = document.querySelector('.prev')
 
-        function generateProcesses(){
-            const processes = [
-                {
-                    title: "Upload Data",
-                    description: "Upload your data and personalize.",
-                    icon: "1"
-                },
-                {
-                    title: "Set Goals",
-                    description: "Define fitness and health objectives.",
-                    icon: "2"
-                },
-                {
-                    title: "AI Analysis",
-                    description: "Monitor health metrics like steps and sleep.",
-                    icon: "3"
-                },
-                {
-                    title: "Get Insights",
-                    description: "Receive personalized health tips.",
-                    icon: "4"
-                },
-                {
-                    title: "24/7 Support",
-                    description: "Access help anytime you need.",
-                    icon: "5"
-                },
-                {
-                    title: "Review Progress",
-                    description: "Check your health summary regularly.",
-                    icon: "6"
-                }
-            ];
+next.addEventListener('click', function(){
+    let items = document.querySelectorAll('.item')
+    document.querySelector('.slide').appendChild(items[0])
+})
 
+prev.addEventListener('click', function(){
+    let items = document.querySelectorAll('.item')
+    document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
+})
 
-            const processContainer = document.getElementById("H-container");
-
-            processes.forEach(process => {
-                const processCard = document.createElement("div");
-                processCard.classList.add("process-card", "flex", "items-center", "flex-col", "text-center",  "p-5", "w-[250px]", "h-[200px]");  // Added border, background, and shadow for better structure
-
-                processCard.innerHTML = `
-                    <div class="process-icon text-2xl text-white bg-gray-700 rounded-full text-center w-[60px] h-[60px] flex items-center justify-center mb-4">
-                        <p class="font-bold">${process.icon}</p>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">${process.title}</h3>
-                    <p class="text-md text-gray-700">${process.description}</p>
-                `;
-
-                processContainer.appendChild(processCard);
-            });
-
-        }
-
-        generateProcesses();
-
-        function generateFAQ() {
-            const FAQdb = [
-                {
-                    question: "What makes this health app different from other fitness apps I've tried?",
-                    answer: "Unlike traditional fitness apps, we use advanced AI to truly personalize your experience. The app learns your unique patterns, adapts to your progress, and provides recommendations that actually match your lifestyle. It's like having a personal health coach that knows you better each day, rather than just following pre-set programs."
-                },
-                {
-                    question: "I'm worried about my privacy. How do I know my health data is safe?",
-                    answer: "Your privacy is our top priority. All your health data is encrypted, meaning no one else can read it. Most AI processing happens right on your phone, not in the cloud. When we do need to use cloud processing, your data is anonymized first. We meet all major privacy standards (HIPAA and GDPR), and you can delete your data anytime."
-                },
-                {
-                    question: "I'm not very tech-savvy. Is this app complicated to use?",
-                    answer: "Not at all! We've designed the app to be intuitive and user-friendly. The AI works in the background while you use simple, clear interfaces. You don't need any technical knowledge - just follow the straightforward prompts and the AI will learn your preferences automatically. We also offer 24/7 support if you need help."
-                }
-                // Add more questions here if needed
-            ];
-
-            const f_container = document.getElementById("f-container");
-
-            FAQdb.forEach(question => {
-
-                const f_card = document.createElement("div");
-                f_card.classList.add("border", "p-4", "rounded-lg", "shadow", "mb-4");
-
-                f_card.innerHTML =`
-                    <div class="f_title flex justify-between items-center cursor-pointer">
-                    <h2 class="text-md font-semibold">${question.question}</h2>
-                    <i class="fas fa-angle-down text-gray-500 transition-transform duration-200"></i>
-                    </div>
-                    <div class="f_answer mt-2 text-gray-700 hidden">
-                        <p>${question.answer}</p>
-                    </div>
-                `;
-
-                const f_title = f_card.querySelector(".f_title");
-                const f_content = f_card.querySelector(".f_answer");
-                const icon = f_card.querySelector("i");
-
-                f_title.onclick = function(){
-                    f_content.classList.toggle("hidden");
-                    icon.classList.toggle("rotate180deg");
-                }
-
-                f_container.appendChild(f_card);
-
-            });
-
-        }
-
-        // Call the function
-        generateFAQ();
-
-
-
-    </script>
-
+</script>
 
 </body>
+
 </html>
